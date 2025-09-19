@@ -1,10 +1,12 @@
-// Printing sum of n terms using while loop
-let currentTerm = 1
-let finalTerm = 10
-let sum = 0
+// Printing sum of n terms using While Loop
 
-while(currentTerm <=finalTerm){
+const inputNumber = 10;
+let currentTerm = 1;
+let sum = 0;
+
+while(currentTerm <=inputNumber){
     sum += currentTerm;
-    console.log("Sum", sum, "Current Term", currentTerm);
     currentTerm +=1;
 }
+
+console.log("Sum of first", inputNumber, "Natural Number is:", sum);
