@@ -5,7 +5,7 @@ function findDistancebetweenVowel(string) {
 function composeMessage(mark, inputSection, actualSection, expectedSection) {
   let message = mark + " | ";
   message += inputSection + " | ";
-  message +=  actualSection + " ";
+  message +=  actualSection + " | ";
   message += expectedSection;
   console.log(message);
 }
