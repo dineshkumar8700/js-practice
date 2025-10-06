@@ -1,5 +1,27 @@
-function incrementDate(date) {
-  return "02-01-2025";
+function paddWithZeroes(text, length) {
+  return text.padStart(length, 0);
+}
+
+function formatDate(date, month, year) {
+  const paddedDate = paddWithZeroes("" + date, 2);
+  const paddedMonth = paddWithZeroes("" + month, 2);
+  const paddedYear = paddWithZeroes("" + year, 4);
+
+  return `${paddedDate}-${paddedMonth}-${paddedYear}`;
+}
+
+function incrementDate(date, month, year) {
+  date = date + 1;
+
+  return formatDate(date, month, year);
+}
+
+function nextDate(date) {
+  const dateOfNumber = parseInt(date.slice(0, 2));
+  const monthOfNumber = parseInt(date.slice(3, 5));
+  const yearOfNumber = parseInt(date.slice(6));
+
+  return incrementDate(dateOfNumber, monthOfNumber, yearOfNumber);
 }
 
 function composeFailCase(msg, inputSection, actualSection, expectedSection) {
@@ -18,7 +40,7 @@ function composeMessage(testType) {
 }
 
 function testIncrementDate(message, date, expected) {
-  const actual = incrementDate(date);
+  const actual = nextDate(date);
 
   if (actual === expected) {
     composeMessage(message);
@@ -32,7 +54,8 @@ function testIncrementDate(message, date, expected) {
 }
 
 function testAll() {
-  testIncrementDate("First day of year", "01-02-2025", "02-01-2025");
+  testIncrementDate("First day of year", "01-01-2025", "02-01-2025");
+  testIncrementDate("Indian Independence Day", "15-08-1947", "16-08-1947");
 }
 
 function main() {
