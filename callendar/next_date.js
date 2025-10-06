@@ -10,9 +10,18 @@ function formatDate(date, month, year) {
   return `${paddedDate}-${paddedMonth}-${paddedYear}`;
 }
 
-function incrementDate(date, month, year) {
-  date = date + 1;
+function isLastDayOfMonth(date, month) {
+  return date === 31;
+}
 
+function incrementDate(date, month, year) {
+  if (isLastDayOfMonth(date)) {
+    date = 1;
+    month = month + 1;
+    return formatDate(date, month, year);
+  }
+  
+  date += 1;
   return formatDate(date, month, year);
 }
 
@@ -55,7 +64,7 @@ function testIncrementDate(message, date, expected) {
 
 function testAll() {
   testIncrementDate("First day of year", "01-01-2025", "02-01-2025");
-  testIncrementDate("Indian Independence Day", "15-08-1947", "16-08-1947");
+  testIncrementDate("Last day of month", "31-01-2025", "01-02-2025");
 }
 
 function main() {
