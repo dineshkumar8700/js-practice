@@ -20,7 +20,7 @@ function incrementDate(date, month, year) {
     month = month + 1;
     return formatDate(date, month, year);
   }
-  
+
   date += 1;
   return formatDate(date, month, year);
 }
@@ -63,8 +63,13 @@ function testIncrementDate(message, date, expected) {
 }
 
 function testAll() {
-  testIncrementDate("First day of year", "01-01-2025", "02-01-2025");
-  testIncrementDate("Last day of month", "31-01-2025", "01-02-2025");
+  testIncrementDate("1 Jan ", "01-01-2025", "02-01-2025");
+  testIncrementDate("31 Jan", "31-01-2025", "01-02-2025");
+  testIncrementDate("31 March", "31-03-2025", "01-04-2025");
+  testIncrementDate("31 May", "31-05-2025", "01-06-2025");
+  testIncrementDate("31 July", "31-07-2025", "01-08-2025");
+  testIncrementDate("31 August", "31-08-2025", "01-09-2025");
+  testIncrementDate("31 October", "31-10-2025", "01-11-2025");
 }
 
 function main() {
