@@ -1,0 +1,77 @@
+function playAgain() {
+  const confirmation = confirm("Do you want to play Again ?");
+
+  if (confirmation) {
+    console.clear();
+    return main();
+  }
+}
+
+function generateEmoji() {
+  const emojis = ['🙂', '😑', '🙃', '🤨', '😔'];
+  const index = Math.round(Math.random() * 4 + 0);
+
+  return emojis[index];
+}
+
+function afterLosing(secretNumber) {
+  console.log("You Lose ❌");
+  console.log("Secret Number was", secretNumber)
+  playAgain();
+  console.log("Well played! 🤓");
+}
+
+function guessNumberGame(secretNumber, guesses, range) {
+  console.log(`Guess Number between ${range} in ${guesses} chances`);
+
+  for (let guess = 0; guess < guesses; guess++) {
+    const response = parseInt(prompt("Guess the number:"))
+
+    if (response === secretNumber) {
+      console.log("You Won 🏆");
+      return playAgain();
+    }
+
+    const emoji = generateEmoji();
+    const message = response > secretNumber ? `Too High ${emoji}` : `Too Low ${emoji}`;
+    console.log(message);
+  }
+
+  return afterLosing(secretNumber);
+}
+
+function generateSecretNumber(endNumber) {
+  const secretNumber = Math.round((Math.random() * (endNumber - 1) + 1));
+  return secretNumber;
+}
+
+function startGame(level) {
+  switch (level) {
+    case '1': return guessNumberGame(generateSecretNumber(50), 5, "1-50");
+    case '2': return guessNumberGame(generateSecretNumber(100), 5, "1-100");
+    case '3': return guessNumberGame(generateSecretNumber(500), 6, "1-500");
+    case '4': return guessNumberGame(generateSecretNumber(1000), 8, "1-1000");
+    default: {
+      console.log(`Invalid level selected ${generateEmoji()} Select Again`);
+      return selectLevel();
+    }
+  }
+}
+
+function selectLevel() {
+  console.log("1. Easy");
+  console.log("2. Medium");
+  console.log("3. Hard");
+  console.log("4. Extreme Hard");
+
+  const level = prompt("Choose level (Between 1-4)");
+  console.clear();
+  startGame(level);
+}
+
+function main() {
+  console.log("Welcome back 😎 Choose level to start game");
+  selectLevel();
+}
+
+main()
