@@ -2,7 +2,7 @@
 
 const firstTerm = 2;
 const difference = 4;
-let limit = 7;
+const limit = 7;
 let numberOfTerms = 1;
 let currentTerm = firstTerm;
 
